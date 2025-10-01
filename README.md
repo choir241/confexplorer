@@ -1,7 +1,22 @@
 Conference App (name TBD)
 
+WHO ARE YOU BUILDING FOR
+- people who would be interested in going to a tech conference
+WHAT DO THEY WANT
+- they want to know if a. the conference was worth it financially b. what to do at conferences c. what to look for in a conference for their particular goals d. what to do after a conference e. alternatives to conferences
+WHAT IS THE BARE MINIMUM NEEDED TO FULFILL THE WANT FOR THE PERSONA
+- blog post about conference
+- video about conference
+- easy to navigate through different information
+- a way to see condensed info
+- a way to see more detailed and in-depth info
+
 # Table of Content
 
+- [App Goals](#app-goals)
+  - [Who Are You Building For](#who-are-you-building-for)
+  - [What Do They Want](#what-do-they-want)
+  - [What is the Bare Minimum Needed to Fulfill the Want for the Persona](#what-is-the-bare-minimum-needed-to-fulfill-the-want-for-the-persona)
 - [Location Pins](#location-pins)
   - [UX](#ux)
   - [UI](#ui)
@@ -18,6 +33,23 @@ Conference App (name TBD)
   - [UX](#ux-3)
   - [UI](#ui-3)
   - [Accessibility](#accessibility-3)
+
+## App Goals
+### Who Are You Building For
+- people who would be interested in going to a tech conference
+### What Do They Want
+- they want to know if 
+  a. the conference was worth it financially 
+  b. what to do at conferences 
+  c. what to look for in a conference for their particular goals 
+  d. what to do after a conference 
+  e. alternatives to conferences
+### What is the Bare Minimum Needed to Fulfill the Want for the Persona
+- blog post about conference
+- video about conference
+- easy to navigate through different information
+- a way to see condensed info
+- a way to see more detailed and in-depth info
 
 # Main Features
 
