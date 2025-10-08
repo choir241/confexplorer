@@ -1,50 +1,59 @@
-.usaMapContainer{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+.usaMapContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
-.usa-map{
-    width: 50%;
+.usa-map {
+  width: 50%;
 }
 
-.texas{
-    top: 23rem;
-    right: 40rem;
+.TX {
+  top: 23rem;
+  right: 41rem;
 }
 
-.newYork{
-    top: 12rem;
-    right: 25rem;
+.NY {
+  top: 12rem;
+  right: 25rem;
 }
 
-.utah{
-    top: 16rem;
-    right: 49rem;
+.UT {
+  top: 16rem;
+  right: 49rem;
 }
 
-.florida{
-    top: 26rem;
-    right: 27rem;
+.FL {
+  top: 26rem;
+  right: 27rem;
 }
 
-.georgia{
-    top: 22rem;
-    right: 29rem;
+.GA {
+  top: 22rem;
+  right: 29rem;
 }
 
-.northCarolina{
-    top: 19rem;
-    right: 26rem;
+.NC {
+  top: 19rem;
+  right: 26rem;
 }
 
-.wisconsin{
-    top: 12rem;
-    right: 34rem;
+.WI {
+  top: 12rem;
+  right: 34rem;
 }
 
-.state{
-    position: absolute;
+.state {
+  border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+  cursor: pointer;
+  border: none;
+  position: absolute;
+}
+
+.state:hover {
+  opacity: 70%;
 }
