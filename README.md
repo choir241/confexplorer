@@ -1,12 +1,11 @@
-Conference App (name TBD)
+ConfExplorer
 
-WHO ARE YOU BUILDING FOR
+# Goals
+## Who are you building for?
 - people who would be interested in going to a tech conference
-WHAT DO THEY WANT
+## What do they want?
 - they want to know if a. the conference was worth it financially b. what to do at conferences c. what to look for in a conference for their particular goals d. what to do after a conference e. alternatives to conferences
-WHAT IS THE BARE MINIMUM NEEDED TO FULFILL THE WANT FOR THE PERSONA
-- blog post about conference
-- video about conference
+## What is the bare minimum needed to fulfill the want for the persona?
 - easy to navigate through different information
 - a way to see condensed info
 - a way to see more detailed and in-depth info
@@ -17,11 +16,11 @@ WHAT IS THE BARE MINIMUM NEEDED TO FULFILL THE WANT FOR THE PERSONA
   - [Who Are You Building For](#who-are-you-building-for)
   - [What Do They Want](#what-do-they-want)
   - [What is the Bare Minimum Needed to Fulfill the Want for the Persona](#what-is-the-bare-minimum-needed-to-fulfill-the-want-for-the-persona)
-- [Location Pins](#location-pins)
+- [States](#states-prev-known-as-location-pins)
   - [UX](#ux)
   - [UI](#ui)
   - [Accessibility](#accessibility)
-- [Post-Clicking a Location Pin Content](#post-clicking-a-location-pin-content)
+- [Post-Clicking a USA State Content](#post-clicking-a-usa-state-content)
   - [UX](#ux-1)
   - [UI](#ui-1)
   - [Accessibility](#accessibility-1)
@@ -39,11 +38,11 @@ WHAT IS THE BARE MINIMUM NEEDED TO FULFILL THE WANT FOR THE PERSONA
 - people who would be interested in going to a tech conference
 ### What Do They Want
 - they want to know if 
-  a. the conference was worth it financially 
-  b. what to do at conferences 
-  c. what to look for in a conference for their particular goals 
-  d. what to do after a conference 
-  e. alternatives to conferences
+  - the conference was worth it financially 
+  - what to do at conferences 
+  - what to look for in a conference for their particular goals 
+  - what to do after a conference 
+  - alternatives to conferences
 ### What is the Bare Minimum Needed to Fulfill the Want for the Persona
 - blog post about conference
 - video about conference
@@ -53,22 +52,22 @@ WHAT IS THE BARE MINIMUM NEEDED TO FULFILL THE WANT FOR THE PERSONA
 
 # Main Features
 
-## Location Pins
+## States (Prev known as location pins)
 
-User should be able to click on a variety of map location pins - pins representing each location of conference I've attended - and display conference information/pictures respective to location
+User should be able to click on a variety of map states - representing each location of conference I've attended - and display conference information/pictures respective to location
 
 ### UX
 
-- User should be able to exit out of the focused location pins content by clicking on it again
+- User should be able to exit out of the focused states content by clicking on it again
 
 > React state to toggle between each unique location to toggle on/off
 
-- User should be able to exit out of the focused location pins content by clicking outside of the pin on any empty space/unclickable element on the site
+- User should be able to exit out of the focused state content by clicking outside of the state on any empty space/unclickable element on the site
 
-> Add event listener to entire body of site, and with useEffect listen for click on site to check if it's a pin or not
+> Add event listener to entire body of site, and with useEffect listen for click on site to check if it's a state svg or not
 
-- User should be able to click on another pin while already focused on a pin, updating the content shown for that respective location
-> Update location pin react state to represent newly clicked location pin with unique location pin value ie. commitYourCode2025
+- User should be able to click on another state while already focused on a state, updating the content shown for that respective location
+> Update location USA state react state to represent newly clicked USA state with unique USA state value ie. commitYourCode2025
 
 ### UI
 
@@ -82,19 +81,19 @@ User should be able to click on a variety of map location pins - pins representi
 - For accessibility purposes, pins should be tab explorable
 > One option is to make the pins buttons
 
-> Another option is using `<area>` tags with href attributes and associated image in `<map>` tags
+> Previous assumption: (Another option is using `<area>` tags with href attributes and associated image in `<map>` tags) Have learned that map and area doesn't quite work the way I imagined it would
 
 > Another option is using tabindex to make elements tabbable - along with adding function to handle enter/space bar click
 
-- For accessibility purposes, pins should be able to be read by a site-to-speech reader (screen reader)
+- For accessibility purposes, states should be able to be read by a site-to-speech reader (screen reader)
 
 > If using buttons, we can leave as is - as long as the label is clear what its function does
 
-> If using `<area>` tag, we must create a alt tag to make it readable by a screen reader
+> Previous assumption: (If using `<area>` tag, we must create a alt tag to make it readable by a screen reader) Have learned that map and area doesn't quite work the way I imagined it would
 
 > If using tabindex, can leave as is - as long as the role/aria-labelled is labelled correctly
 
-## Post-clicking a Location Pin Content
+## Post-clicking a USA State Content
 
 ### UX
 
