@@ -3,57 +3,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
 }
 
-.usa-map {
-  width: 50%;
-}
-
-.TX {
-  top: 23rem;
-  right: 41rem;
-}
-
-.NY {
-  top: 12rem;
-  right: 25rem;
-}
-
-.UT {
-  top: 16rem;
-  right: 49rem;
-}
-
-.FL {
-  top: 26rem;
-  right: 27rem;
-}
-
-.GA {
-  top: 22rem;
-  right: 29rem;
-}
-
-.NC {
-  top: 19rem;
-  right: 26rem;
-}
-
-.WI {
-  top: 12rem;
-  right: 34rem;
-}
-
-.state {
-  border-radius: 50%;
-  height: 2rem;
-  width: 2rem;
-  cursor: pointer;
-  border: none;
-  position: absolute;
-}
-
-.state:hover {
-  opacity: 70%;
+.usaMapContainer div{
+  width: 70%;
 }

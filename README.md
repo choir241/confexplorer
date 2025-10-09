@@ -217,3 +217,27 @@ User should be able to click on a variety of map states - representing each loca
   > Since `<button>` is clickable through tabbing by default, we can leave this be
 - Links should be clickable through tabbing
   > Since `<link>` is clickable through tabbing by default, we can leave this be
+
+# Building Features Notes
+
+## USA Map
+
+Problem: Needed to make sure it was interactable map of the USA states and explorable using the keyboard using either the tab or arrow keys and clicking on them with the space or enter key
+
+First approach:
+
+Initially started with the <map> and <area> html tags, thinking that I would overlay a USA map graphic and creating the clickable areas using the <area> coordinates attribute.
+
+But considering how inefficient this would be time-wise by determining each individual US state coordinates, I opted to find a npm package that would handle the interactions of the USA states. 
+
+Second approach:
+
+Doing some online research, I ended up going with the `@mirawision/usa-map-react` package due to the other packages not being supported as of writing this README.md.
+
+While I was able to find a solution to making the USA map interactable, I couldn't make it tabbable with the keyboard for accessibility users, so I initially created button elements;however, this caused the design of the map not to look as good visually with the buttons overlaying on top of each individual state.
+
+Final approach:
+
+I created a `ref={usaMapTabbingKeyboardContainer}` to create a reference to the `<div>` element wrapping around the `<USAMapLib>` component, allowing us to interact with it later in the code (which is what we want to simulate tabbing and keyboard interactions with the USA map).
+
+By defining our tabbing and keyboard logic in our useEffect hook, we're able to add them to our svg and path elements after rendering the component.
