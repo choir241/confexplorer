@@ -1,30 +1,48 @@
 import { type IConfData } from "../App";
+import { LuCalendar } from "react-icons/lu";
+import { FaLocationDot } from "react-icons/fa6";
+import { TfiNewWindow } from "react-icons/tfi";
 
 export default function ConfContentCard({
   confContent,
 }: {
   confContent: IConfData;
 }) {
-  const confDates = confContent.date.map((date, i) => {
+
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+  const confDatesRange = confContent?.date.map((date, i) => {
+    let confDates = ""
     if (i === 1) {
-      return <>{`${date.getMonth()}/${date.getDay()}/${date.getFullYear()}`}</>;
+      confDates += `${date.getDate()}, ${date.getFullYear()}`;
     } else {
-      return (
-        <>{`${date.getMonth()}/${date.getDay()}/${date.getFullYear()} - `}</>
-      );
+      confDates += `${months[date.getMonth()]} ${date.getDate()} - `
     }
+    return confDates;
   });
 
   return (
     <>
-      {confContent.name ? (
-        <section>
+      {confContent ? (
+        <section className="confContentCard">
           <h2>{confContent.name}</h2>
-          <time>
+          <div className="pb-1 flex items-center w-full">
+          <span className="flex items-center pr-1"><FaLocationDot className="pr-half"/>{confContent.location}</span>
+          <time className="flex items-center">
+            <LuCalendar className="pr-half"/>
             {confContent.date.length > 1
-              ? confDates
-              : `${confContent.date[0].getMonth()}/${confContent.date[0].getDay()}/${confContent.date[0].getFullYear()}`}
+              ? confDatesRange
+              : `${confContent.date[0].getMonth()+1}/${confContent.date[0].getDate()}/${confContent.date[0].getFullYear()}`}
           </time>
+          </div>
+
+              <img src = {confContent.img}/>
+
+              <p>{confContent.description}</p>
+              <button className="button">Learn more</button>
+
+              <a href = {confContent.link}>Conference Link <TfiNewWindow/></a>
+              
         </section>
       ) : (
         ""

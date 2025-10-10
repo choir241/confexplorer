@@ -1,12 +1,17 @@
 import USAMap from "./component/USAMap";
 import { useState } from "react";
 import "./App.css";
+import ConfContentCard from "./component/ConfContentCard";
+import { conferences } from "./static/conferenceData";
 
 export interface IConfData {
   name: string;
   location: string;
   state: string;
   date: Date[];
+  img: string;
+  link: string;
+  description: string;
 }
 
 export default function App() {
@@ -21,6 +26,8 @@ export default function App() {
     }
   };
 
+  const selectedConference = conferences.filter((confData)=>confData.state === selectedState);
+
   return (
     <>
       <div className="usaMapContainer">
@@ -29,7 +36,19 @@ export default function App() {
           Wanna attend a tech conference, but don't know where to start? Start
           by exploring states near you in the map below!
         </span>
-        <USAMap onStateClick={handleStateClick} selectedState={selectedState} />
+
+
+        <section className="confMapContainer">
+        <USAMap
+        hoveredState={hoveredState}
+        setHoveredState={setHoveredState}
+        onStateClick={handleStateClick} selectedState={selectedState} />
+        
+        <ConfContentCard
+        confContent={selectedConference[0]}
+        />
+
+        </section>
       </div>
     </>
   );

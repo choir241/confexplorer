@@ -3,8 +3,107 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .usaMapContainer div{
-  width: 70%;
+  width: 60%;
+}
+
+.confMapContainer{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.confContentCard{
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-direction: column;
+  width: 25%;
+  padding: 2rem 1rem;
+  margin: 2rem;
+  box-shadow: 1px 1px 5px rgb(51, 31, 31);
+  border-radius: 10px;
+}
+
+.button{
+  background: black;
+  width: 100%;
+  border-radius: 5px;
+  color: white;
+  border: none;
+  padding: .5rem 2rem;
+}
+
+.button:hover{
+  cursor: pointer;
+  background: rgb(65, 59, 59);
+}
+
+.button:active{
+  box-shadow: 3px 3px 2px rgb(54, 52, 52);
+}
+
+time{
+  display: flex;
+}
+
+img{
+  width: 100%;
+}
+
+.confContentCard img{
+  margin-bottom: 1rem;
+}
+
+.confContentCard a{
+  margin-top: 1rem;
+}
+
+.confContentCard a:hover{
+  text-decoration: underline;
+}
+
+.confContentCard p{
+  line-height: 1.5rem;
+}
+
+a{
+  color: black;
+  text-decoration: none;
+}
+
+.flex{
+  display: flex;
+}
+
+.items-center{
+  align-items: center;
+}
+
+.space-between{
+  justify-content: space-between;
+}
+
+.usaMapContainer .w-full{
+  width:100%;
+}
+
+.pb-1{
+  padding-bottom: 1rem;
+}
+
+.pr-1{
+  padding-right: 1rem;
+}
+
+.pr-half{
+  padding-right: .25rem;
+}
+
+.confContentCard time, .confContentCard span, .confContentCard h2, .confContentCard button, .confContentCard a{
+  filter: blur(0px);
+  -webkit-filter: blur(0px);
 }

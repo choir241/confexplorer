@@ -6,11 +6,13 @@ import {
 } from "@mirawision/usa-map-react";
 
 interface USAMapProps {
+  hoveredState: string;
+  setHoveredState: (state: string) => void;
   onStateClick: (state: string) => void;
   selectedState: string | null;
 }
 
-export default function USAMap({ onStateClick, selectedState }: USAMapProps) {
+export default function USAMap({ onStateClick, selectedState, hoveredState, setHoveredState }: USAMapProps) {
   const usaMapTabbingKeyboardContainer = useRef<HTMLDivElement>(null);
 
   const statesWithConferences = ["WI", "NY", "NC", "TX", "UT", "FL", "GA"];
@@ -54,7 +56,6 @@ export default function USAMap({ onStateClick, selectedState }: USAMapProps) {
         };
       } else {
         usaStateSvgPath.setAttribute("tabindex", "-1");
-        usaStateSvgPath.setAttribute("aria-hidden", "true");
       }
     })
   }, [selectedState, statesWithConferences, onStateClick]);
@@ -72,6 +73,7 @@ export default function USAMap({ onStateClick, selectedState }: USAMapProps) {
         fill: string;
         stroke?: string;
         onClick?: (state: USAStateAbbreviation) => void;
+        onHover: (state: USAStateAbbreviation) => void;
       }
     > = {};
 
@@ -80,6 +82,8 @@ export default function USAMap({ onStateClick, selectedState }: USAMapProps) {
 
       if(selectedState === state){
         fill = "#137a7f"
+      }else if(hoveredState === state){
+        fill = "#469a9fff"
       }else if (statesWithConferences.includes(state)) {
         fill = "#bec8d1";
       }else{
@@ -87,6 +91,7 @@ export default function USAMap({ onStateClick, selectedState }: USAMapProps) {
       }
 
       config[state] = {
+        onHover: ()=> setHoveredState(state),
         fill,
         onClick: handleStateClick,
       };
