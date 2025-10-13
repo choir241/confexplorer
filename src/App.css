@@ -21,8 +21,8 @@
   justify-content: start;
   align-items: start;
   flex-direction: column;
-  width: 25%;
-  padding: 2rem 1rem;
+  width: 35%;
+  padding: 1rem;
   margin: 2rem;
   box-shadow: 1px 1px 5px rgb(51, 31, 31);
   border-radius: 10px;
@@ -55,11 +55,7 @@ img{
 }
 
 .confContentCard img{
-  margin-bottom: 1rem;
-}
-
-.confContentCard a{
-  margin-top: 1rem;
+  margin: 1rem 0rem;
 }
 
 .confContentCard a:hover{
@@ -101,9 +97,4 @@ a{
 
 .pr-half{
   padding-right: .25rem;
-}
-
-.confContentCard time, .confContentCard span, .confContentCard h2, .confContentCard button, .confContentCard a{
-  filter: blur(0px);
-  -webkit-filter: blur(0px);
 }

@@ -28,20 +28,20 @@ export default function ConfContentCard({
           <h2>{confContent.name}</h2>
           <div className="pb-1 flex items-center w-full">
           <span className="flex items-center pr-1"><FaLocationDot className="pr-half"/>{confContent.location}</span>
-          <time className="flex items-center">
+          <time className="flex items-center pr-1">
             <LuCalendar className="pr-half"/>
             {confContent.date.length > 1
               ? confDatesRange
               : `${confContent.date[0].getMonth()+1}/${confContent.date[0].getDate()}/${confContent.date[0].getFullYear()}`}
           </time>
-          </div>
+        <a href = {confContent.link}>Conf Link <TfiNewWindow/></a>
 
+          </div>
+              
               <img src = {confContent.img}/>
 
               <p>{confContent.description}</p>
               <button className="button">Learn more</button>
-
-              <a href = {confContent.link}>Conference Link <TfiNewWindow/></a>
               
         </section>
       ) : (

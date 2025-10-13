@@ -241,3 +241,34 @@ Final approach:
 I created a `ref={usaMapTabbingKeyboardContainer}` to create a reference to the `<div>` element wrapping around the `<USAMapLib>` component, allowing us to interact with it later in the code (which is what we want to simulate tabbing and keyboard interactions with the USA map).
 
 By defining our tabbing and keyboard logic in our useEffect hook, we're able to add them to our svg and path elements after rendering the component.
+
+## Networking
+
+If users are using this app to find conferences and conf info, the next step would be to have the same users use the same app to network with people as well to reduce the need to download a new app/use a new app.
+
+What does this look like?
+- user login/auth
+  - to connect data in respect to the user that's using the device/app
+  - logout/login/signup
+  - demo account for demo purposes
+- User Profile
+  - user profile should display number of friends/connections
+    - twitter or reddit scroll UI/UX?
+  - connections/friends should be able to view linkedin
+    - li icon
+  - should be able to view connections/friends convos user has had with them
+    - after clicking on their profile, you can view convos you've annotated(should be like to do app notes)
+  - user can add checkmark to coffee label to friends/connections to indicate had coffee chat with them
+    - clickable button to toggle between had/didn't have coffee chat (maybe after clicking on user profile to deter on accidental clicking on it?)
+  - user can add labels from where they met them at - meetup/conference/online and where ie. CYC 2025
+    - after clicking the user profile, list of labels should display with button to add more labels
+  - user can add bookmark connections/friends to push them on list of people to message (what should I call tihs)
+    - bookmark button on user profiles on dashboard doom scrolling
+  - user can select a conference from usa map and add to "currently attending," or add the conference straight from their profile
+    - only display this option if a user logged in
+  - based on dates of conference, app will automatically switch to "attended" list of conferences based on current date
+    - use systems date to compare dates to determine switching from currently attending to attended
+  - user should be able to search for any of their friends/connections
+    - use data set of friend/connection names to find person based on search results
+    - use data set of friend/connection company to find person based on search results
+    - use data set of friend/connection state/country to find person based on search results
