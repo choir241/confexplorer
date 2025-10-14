@@ -8,7 +8,7 @@ nav {
     color: white;
 }
 
-nav a.button{
+header nav .button{
     width: auto;
     text-align: center;
 }

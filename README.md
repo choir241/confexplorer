@@ -272,3 +272,10 @@ What does this look like?
     - use data set of friend/connection names to find person based on search results
     - use data set of friend/connection company to find person based on search results
     - use data set of friend/connection state/country to find person based on search results
+
+## Database setup
+
+Supabase
+
+> Had to force other packages that use React to react v18.3.1 due to Supabase using that version of React and being incompatabile with the other packages using react v.19.1.1
+

@@ -96,6 +96,10 @@ a{
   padding-right: 1rem;
 }
 
+.pl-half{
+  padding-left: .5rem;
+}
+
 .pr-half{
   padding-right: .25rem;
 }

@@ -7,6 +7,7 @@ export const label = {
     },
     header: {
         h1: "ConfExplorer",
-        auth: "Login/Signup"
+        auth: "Login/Signup",
+        logout: "Logout"
     }
 };
