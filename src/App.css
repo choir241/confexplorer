@@ -6,7 +6,7 @@
   position: relative;
 }
 
-.usaMapContainer div{
+.usaMapContainer .confMapContainer div{
   width: 60%;
 }
 
@@ -97,4 +97,30 @@ a{
 
 .pr-half{
   padding-right: .25rem;
+}
+
+.mr-1{
+  margin-right: 1rem;
+}
+
+.mr-half{
+  margin-right: .5rem;
+}
+
+form, .form{
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: center;
+}
+
+form button{
+  width: 100%;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
 }
