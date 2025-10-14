@@ -13,6 +13,7 @@
 .confMapContainer{
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
 }
 
@@ -21,7 +22,7 @@
   justify-content: start;
   align-items: start;
   flex-direction: column;
-  width: 35%;
+  width: 40%;
   padding: 1rem;
   margin: 2rem;
   box-shadow: 1px 1px 5px rgb(51, 31, 31);
@@ -83,7 +84,7 @@ a{
   justify-content: space-between;
 }
 
-.usaMapContainer .w-full{
+.usaMapContainer .confContentCard .w-full{
   width:100%;
 }
 
@@ -107,20 +108,26 @@ a{
   margin-right: .5rem;
 }
 
-form, .form{
-  display: flex;
-  flex-direction: column;
-  align-items: end;
-  justify-content: center;
-}
-
-form button{
+.usaMapContainer .auth div{
   width: 100%;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  align-items: center;
+.usaMapContainer .confMapContainer .auth{
+  width: 30%;
 }
+
+.usaMapContainer p{
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+/* 
+Heading (ConfExplorer) is solid, but subheader could be more compact and styled differently (maybe h2, smaller, lighter font). 
+
+The "Login/Signup" button feels disconnected. Try adding an icon (👤) and aligning it better with overall UI.
+
+The black color may seem harsh—consider using your brand accent color instead for CTA harmony.
+
+Color Contrast: Check color contrast between text and background, especially in the map and the "Login/Signup" button.
+
+Alt Text: Ensure that the image of the event has alt text (important for screen readers).
+*/

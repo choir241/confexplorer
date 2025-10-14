@@ -1,0 +1,1 @@
+  export const statesWithConferences = ["WI", "NY", "NC", "TX", "UT", "FL", "GA"];

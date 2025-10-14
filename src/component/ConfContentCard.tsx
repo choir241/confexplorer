@@ -1,7 +1,8 @@
-import { type IConfData } from "../App";
+import { type IConfData } from "../pages/Home/Home";
 import { LuCalendar } from "react-icons/lu";
 import { FaLocationDot } from "react-icons/fa6";
 import { TfiNewWindow } from "react-icons/tfi";
+import { months } from "../static/months";
 
 export default function ConfContentCard({
   confContent,
@@ -9,13 +10,13 @@ export default function ConfContentCard({
   confContent: IConfData;
 }) {
 
-  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
   const confDatesRange = confContent?.date.map((date, i) => {
     let confDates = ""
-    if (i === 1) {
+    if (i === 1 && date.getMonth() === confContent.date[0].getMonth()) {
       confDates += `${date.getDate()}, ${date.getFullYear()}`;
-    } else {
+    }else if(i === 1 && date.getMonth() !== confContent.date[0].getMonth()){
+      confDates += `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+    }else {
       confDates += `${months[date.getMonth()]} ${date.getDate()} - `
     }
     return confDates;
@@ -25,16 +26,16 @@ export default function ConfContentCard({
     <>
       {confContent ? (
         <section className="confContentCard">
-          <h2>{confContent.name}</h2>
-          <div className="pb-1 flex items-center w-full">
-          <span className="flex items-center pr-1"><FaLocationDot className="pr-half"/>{confContent.location}</span>
+          <h3>{confContent.name}</h3>
+          <div className="pb-1 flex items-center justify-between w-full">
+          <span className="flex items-center pr-1"><FaLocationDot className="pr-half"/>{confContent.city}</span>
           <time className="flex items-center pr-1">
             <LuCalendar className="pr-half"/>
             {confContent.date.length > 1
               ? confDatesRange
               : `${confContent.date[0].getMonth()+1}/${confContent.date[0].getDate()}/${confContent.date[0].getFullYear()}`}
           </time>
-        <a href = {confContent.link}>Conf Link <TfiNewWindow/></a>
+        {/* <a href = {confContent.link}>Conf Link <TfiNewWindow/></a> */}
 
           </div>
               

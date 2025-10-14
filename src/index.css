@@ -1,0 +1,14 @@
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.button a{
+    color: white;
+}
+
+nav a.button{
+    width: auto;
+    text-align: center;
+}

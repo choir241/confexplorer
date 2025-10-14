@@ -4,6 +4,7 @@ import {
   USAMap as USAMapLib,
   type USAStateAbbreviation,
 } from "@mirawision/usa-map-react";
+import { statesWithConferences } from "../static/statesWithConferences";
 
 interface USAMapProps {
   hoveredState: string;
@@ -12,10 +13,13 @@ interface USAMapProps {
   selectedState: string | null;
 }
 
-export default function USAMap({ onStateClick, selectedState, hoveredState, setHoveredState }: USAMapProps) {
+export default function USAMap({
+  onStateClick,
+  selectedState,
+  hoveredState,
+  setHoveredState,
+}: USAMapProps) {
   const usaMapTabbingKeyboardContainer = useRef<HTMLDivElement>(null);
-
-  const statesWithConferences = ["WI", "NY", "NC", "TX", "UT", "FL", "GA"];
 
   useEffect(() => {
     if (!usaMapTabbingKeyboardContainer.current) return;
@@ -34,7 +38,10 @@ export default function USAMap({ onStateClick, selectedState, hoveredState, setH
       if (is_clickable) {
         usaStateSvgPath.setAttribute("tabindex", "0");
         usaStateSvgPath.setAttribute("role", "button");
-        usaStateSvgPath.setAttribute("aria-label", `View conferences in ${stateName}`);
+        usaStateSvgPath.setAttribute(
+          "aria-label",
+          `View conferences in ${stateName}`
+        );
 
         if (selectedState === stateName) {
           usaStateSvgPath.setAttribute("aria-pressed", "true");
@@ -57,7 +64,7 @@ export default function USAMap({ onStateClick, selectedState, hoveredState, setH
       } else {
         usaStateSvgPath.setAttribute("tabindex", "-1");
       }
-    })
+    });
   }, [selectedState, statesWithConferences, onStateClick]);
 
   const handleStateClick = (stateAbbreviation: USAStateAbbreviation) => {
@@ -80,18 +87,18 @@ export default function USAMap({ onStateClick, selectedState, hoveredState, setH
     StateAbbreviations.forEach((state) => {
       let fill = "";
 
-      if(selectedState === state){
-        fill = "#137a7f"
-      }else if(hoveredState === state){
-        fill = "#469a9fff"
-      }else if (statesWithConferences.includes(state)) {
+      if (selectedState === state) {
+        fill = "#137a7f";
+      } else if (hoveredState === state) {
+        fill = "#469a9fff";
+      } else if (statesWithConferences.includes(state)) {
         fill = "#bec8d1";
-      }else{
-        fill = "rgba(229, 236, 233, 1)"
+      } else {
+        fill = "rgba(229, 236, 233, 1)";
       }
 
       config[state] = {
-        onHover: ()=> setHoveredState(state),
+        onHover: () => setHoveredState(state),
         fill,
         onClick: handleStateClick,
       };
@@ -101,11 +108,8 @@ export default function USAMap({ onStateClick, selectedState, hoveredState, setH
   };
 
   return (
-    <div
-      ref={usaMapTabbingKeyboardContainer}
-    >
-      <USAMapLib
-      customStates={customStates()} />
+    <div ref={usaMapTabbingKeyboardContainer}>
+      <USAMapLib customStates={customStates()} />
     </div>
   );
 }
