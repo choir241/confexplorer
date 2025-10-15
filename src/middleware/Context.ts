@@ -1,4 +1,8 @@
 import { createContext } from "react";
 import { type Session } from "@supabase/supabase-js";
 
-export const AuthSession = createContext<Session | null>(null);
+type TAuth = {
+    session: Session | null,
+    loading: boolean
+}
+export const AuthSession = createContext<TAuth>({session: null, loading: true});

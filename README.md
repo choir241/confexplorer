@@ -273,9 +273,24 @@ What does this look like?
     - use data set of friend/connection company to find person based on search results
     - use data set of friend/connection state/country to find person based on search results
 
+## Auth setup
+
+Loading
+
+Why not use `React.Suspense`, but use an explicit react state to handle loading for `supabase.auth.getSession` and/or `supabase.auth.onAuthStateChange`?
+
+Because the logic for checking if there is a user logged in right now on the first render of the App and/or checking if there was any changes to the user auth in real time are both in a `useEffect` hook, which triggers after the app is finished with its initial render. 
+
+Why are we placing our supabase logic like `supabase.auth.getSession` and/or `supabase.auth.onAuthStateChange` in a `useEffect` hook?
+
+We want to accomplish these operations in a `useEffect` hook because we want to keep our React app during the rendering phase pure from asynchronous calls or side effects.
+
+Why not place `session` and/or `loading` in the dependency arrays in the `useEffect` hook since they're changing, wouldn't we want to watch state values/values that are changing dynamically?
+
+`useEffect` triggers after React finishes its rendering phase, triggering our two supabase promise methods thus updating the session and loading data with `setSession` and `setLoading` state updates. And since these values have updated, React would naturally re-render. However, if we place `session` and/or `loading` in our dependency arrays, React would identify that these values have changed, thus re-triggering `useEffect` entire logic flow and leading to a infinite loop.
+
 ## Database setup
 
 Supabase
 
 > Had to force other packages that use React to react v18.3.1 due to Supabase using that version of React and being incompatabile with the other packages using react v.19.1.1
-
