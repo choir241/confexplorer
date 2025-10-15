@@ -3,6 +3,7 @@ import { LuCalendar } from "react-icons/lu";
 import { FaLocationDot } from "react-icons/fa6";
 import { TfiNewWindow } from "react-icons/tfi";
 import { months } from "../static/months";
+import { label } from "../static/label";
 
 export default function ConfContentCard({
   confContent,
@@ -51,7 +52,7 @@ export default function ConfContentCard({
           <img src={confContent.img} />
 
           <p>{confContent.description}</p>
-          <button className="button">Learn more</button>
+          <button className="button">{label.confContent.button}</button>
         </section>
       ) : (
         ""

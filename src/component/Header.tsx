@@ -12,7 +12,7 @@ export default function Header() {
   async function signOut() {
     const { error } = await supabase.auth.signOut();
     if(loading){
-      return <h1>Loading...</h1>
+      return <h1>{label.loading}</h1>
     }
     console.log(error);
   }
@@ -20,9 +20,9 @@ export default function Header() {
   return (
     <>
       <header>
+        <h1><a href = "/">{label.header.h1}</a></h1>
         <nav>
-          <h1><a href = "/">{label.header.h1}</a></h1>
-          <a href="/user">User</a>
+          {session ? <a href="/user" className="pr-1 flex items-center"><FaUser className="pr-half"/>{label.header.user}</a> : ""}
           {session ?
           <button className="button flex items-center justify-between" onClick={()=>signOut()}><FaPowerOff className="pr-half"/>{label.header.logout}</button>
           :

@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Navigate } from "react-router";
 import { AuthSession } from "./Context";
+import { label } from "../static/label";
 
 export default function RedirectUserPage({
   children,
@@ -10,7 +11,7 @@ export default function RedirectUserPage({
   const {session, loading} = useContext(AuthSession);
 
   if(loading){
-    return <h1>Loading...</h1>
+    return <h1>{label.loading}</h1>
   }
   
   if (!session) {
