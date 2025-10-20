@@ -14,5 +14,8 @@ export const label = {
     },
     confContent: {
         button: "Learn more"
+    },
+    user: {
+        h2: "Connections"
     }
 };

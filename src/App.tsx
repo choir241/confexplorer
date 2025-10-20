@@ -14,7 +14,19 @@ export default function App() {
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
+
+  async function test(){
+const { data, error } = await supabase
+  .from('Connections')
+  .select()
+  console.log(data);
+  }
+
+  
+ 
   useEffect(() => {
+
+    test()
     // checks whos logged in right now
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
