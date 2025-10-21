@@ -16,6 +16,7 @@ export const label = {
         button: "Learn more"
     },
     user: {
-        h2: "Connections"
+        h2: "Connections",
+        h4: "No Connections Yet"
     }
 };

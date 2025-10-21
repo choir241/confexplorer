@@ -6,27 +6,30 @@ import Header from "./component/Header";
 import { useState, useEffect } from "react";
 import { type Session } from "@supabase/supabase-js";
 import { supabase } from "./static/supabaseClient";
-import { AuthSession } from "./middleware/Context";
+import { AuthSession, type IConnection } from "./middleware/Context";
 import RedirectAuthPage from "./middleware/RedirectAuthPage";
 import RedirectUserPage from "./middleware/RedirectUserPage";
 
 export default function App() {
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [connections, setConnections] = useState<IConnection[] | null>([]);
 
-
-  async function test(){
-const { data, error } = await supabase
-  .from('Connections')
-  .select()
-  console.log(data);
-  }
-
-  
- 
   useEffect(() => {
+    async function grabConnectionsData() {
+      const { data, error } = await supabase.from("Connections").select();
 
-    test()
+      if (error) {
+        throw new Error(
+          `There was an error fetching data from the Connections Supabase table: ${error}`
+        );
+      }
+
+      setConnections(data);
+    }
+
+    grabConnectionsData();
+
     // checks whos logged in right now
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
@@ -45,7 +48,7 @@ const { data, error } = await supabase
   }, []);
 
   return (
-    <AuthSession.Provider value={{session, loading}}>
+    <AuthSession.Provider value={{ session, loading, connections }}>
       <BrowserRouter>
         <Routes>
           <Route element={<Header />}>
