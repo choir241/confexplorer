@@ -6,14 +6,15 @@ import Header from "./component/Header";
 import { useState, useEffect } from "react";
 import { type Session } from "@supabase/supabase-js";
 import { supabase } from "./static/supabaseClient";
-import { AuthSession, type IConnection } from "./middleware/Context";
+import { AuthSession} from "./middleware/Context";
 import RedirectAuthPage from "./middleware/RedirectAuthPage";
 import RedirectUserPage from "./middleware/RedirectUserPage";
+import {type IUser} from "./pages/User/User";
 
 export default function App() {
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [connections, setConnections] = useState<IConnection[] | null>([]);
+  const [connections, setConnections] = useState<IUser[] | null>([]);
 
   useEffect(() => {
     async function grabConnectionsData() {
@@ -26,6 +27,7 @@ export default function App() {
       }
 
       setConnections(data);
+      setLoading(false);
     }
 
     grabConnectionsData();
