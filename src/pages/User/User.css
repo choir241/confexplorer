@@ -25,18 +25,6 @@
     font-size: 2rem;
 }
 
-.labels{
-    display: flex;
-    justify-content: space-between;
-}
-
-.labels div{
-    background: grey;
-    padding: .5rem 1rem;
-    margin: 2rem;
-    border-radius: 5px;
-}
-
 .connectionsContainer{
     display: flex;
     flex-direction: column;
@@ -50,4 +38,13 @@
 
 body *{
     border: 3px solid black;
+}
+
+.labels{
+    margin: 1rem 0rem;
+}
+
+.label{
+    padding: .5rem 1rem;
+    background-color: teal;
 }

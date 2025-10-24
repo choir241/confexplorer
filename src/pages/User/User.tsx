@@ -1,5 +1,5 @@
 import { label } from "../../static/label";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { AuthSession } from "../../middleware/Context";
 import "./User.css";
 import ConnectedUser from "../../component/ConnectedUser";
@@ -53,50 +53,92 @@ export interface IUser {
 //   }
 // ]
 
+interface ISelectedUser {
+  id: string;
+  had_coffee_chat: boolean;
+  bookmark_connection: boolean;
+  labels: string[];
+  notes: string[];
+}
+
 export default function User() {
   const { session, loading, connections } = useContext(AuthSession);
-
-    console.log(loading)
-  console.log(connections)
-  console.log(session)
 
   if (loading || !connections || !session) {
     return <h1>{label.loading}</h1>;
   }
-  
-  console.log(loading)
-  console.log(connections)
-  console.log(session)
+
+  const [selectedConnection, setSelectedConnection] = useState<string>("");
+  const [selectedUser, setSelectedUser] = useState<ISelectedUser | null>();
+
   const currentUserConnections = connections.find((connection) => {
     return connection.user_id === session.user.id;
   });
 
+  useEffect(() => {
+    if (currentUserConnections) {
+      const findSelectedUser = currentUserConnections.connected_users.find(
+        (user: IUser) => {
+          return user.id === selectedConnection;
+        }
+      );
+
+      setSelectedUser(findSelectedUser);
+    }
+  }, [selectedConnection, currentUserConnections]);
+
   return (
     <>
-    {
-    currentUserConnections ? 
-    <div className="flex justify-between">
-      <section>
-        <h1>
-          {currentUserConnections.first_name} {currentUserConnections.last_name}
-        </h1>
-        <h2>{currentUserConnections.curr_company}</h2>
-        <h3>{currentUserConnections.curr_role}</h3>
-      </section>
+      {currentUserConnections ? (
+        <div className="flex justify-between">
+          <section>
+            <h1>
+              {currentUserConnections.first_name}{" "}
+              {currentUserConnections.last_name}
+            </h1>
+            <h2>{currentUserConnections.curr_company}</h2>
+            <h3>{currentUserConnections.curr_role}</h3>
+          </section>
 
-      <section className="connectionsContainer">
-        {currentUserConnections ? (
-          currentUserConnections.connected_users.map((user: IUser) => {
-            return <ConnectedUser user={user} key={user.user_id} />;
-          })
-        ) : (
-          <h4>{label.user.h4}</h4>
-        )}
-      </section>
-    </div>
-    :
-    <h1>{label.loading}</h1>
-    }
+          <section className="connectionsContainer">
+            {currentUserConnections ? (
+              currentUserConnections.connected_users.map((user: IUser) => {
+                return (
+                  <ConnectedUser
+                    setSelectedConnection={setSelectedConnection}
+                    user={user}
+                    key={user.user_id}
+                  />
+                );
+              })
+            ) : (
+              <h4>{label.user.h4}</h4>
+            )}
+          </section>
+
+          <section>
+            {selectedUser ? (
+              <div>
+                <ul>
+                  {selectedUser.notes.map((note: string) => {
+                    return <li>{note}</li>;
+                  })}
+                </ul>
+
+                <div className="labels">
+                {selectedUser.labels.map((label) => {
+                  return <span className="label">{label}</span>;
+                })}</div>
+                <button>Add Label</button>
+              </div>
+            ) : (
+              ""
+            )}
+          </section>
+        </div>
+      ) : (
+        <h1>{label.loading}</h1>
+      )}
     </>
   );
 }
