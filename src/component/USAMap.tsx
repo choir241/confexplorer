@@ -5,20 +5,14 @@ import {
   type USAStateAbbreviation,
 } from "@mirawision/usa-map-react";
 import { statesWithConferences } from "../static/statesWithConferences";
-
-interface USAMapProps {
-  hoveredState: string;
-  setHoveredState: (state: string) => void;
-  onStateClick: (state: string) => void;
-  selectedState: string | null;
-}
+import {type IUSAMapProps} from "../interfaces/Map";
 
 export default function USAMap({
   onStateClick,
   selectedState,
   hoveredState,
   setHoveredState,
-}: USAMapProps) {
+}: IUSAMapProps) {
   const usaMapTabbingKeyboardContainer = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -40,7 +34,7 @@ export default function USAMap({
         usaStateSvgPath.setAttribute("role", "button");
         usaStateSvgPath.setAttribute(
           "aria-label",
-          `View conferences in ${stateName}`
+          `View conferences in ${stateName}`,
         );
 
         if (selectedState === stateName) {

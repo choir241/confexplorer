@@ -1,15 +1,15 @@
 import { createContext } from "react";
 import { type Session } from "@supabase/supabase-js";
-import { type IUser } from "../pages/User/User";
+import { type IUser } from "../interfaces/Auth";
 
 type TAuth = {
   session: Session | null;
   loading: boolean;
-  connections: IUser[] | null;
+  users: IUser[] | null;
 };
 
 export const AuthSession = createContext<TAuth>({
   session: null,
   loading: true,
-  connections: [],
+  users: [],
 });

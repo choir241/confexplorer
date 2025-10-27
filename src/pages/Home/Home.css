@@ -6,18 +6,18 @@
   position: relative;
 }
 
-.usaMapContainer .confMapContainer div{
+.usaMapContainer .confMapContainer div {
   width: 60%;
 }
 
-.confMapContainer{
+.confMapContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
 }
 
-.confContentCard{
+.confContentCard {
   display: flex;
   justify-content: start;
   align-items: start;
@@ -29,75 +29,74 @@
   border-radius: 10px;
 }
 
-.button{
+.button {
   background: black;
   width: 100%;
   border-radius: 5px;
   color: white;
   border: none;
-  padding: .5rem 2rem;
+  padding: 0.5rem 2rem;
 }
 
-.button:hover{
+.button:hover {
   cursor: pointer;
   background: rgb(65, 59, 59);
 }
 
-.button:active{
+.button:active {
   box-shadow: 3px 3px 2px rgb(54, 52, 52);
 }
 
-time{
+time {
   display: flex;
 }
 
-img{
+img {
   width: 100%;
 }
 
-.confContentCard img{
+.confContentCard img {
   margin: 1rem 0rem;
 }
 
-.confContentCard a:hover{
+.confContentCard a:hover {
   text-decoration: underline;
 }
 
-.confContentCard p{
+.confContentCard p {
   line-height: 1.5rem;
 }
 
-a{
+a {
   color: black;
   text-decoration: none;
 }
 
-.flex{
+.flex {
   display: flex;
 }
 
-.items-center{
+.items-center {
   align-items: center;
 }
 
-.space-between{
+.space-between {
   justify-content: space-between;
 }
 
-.usaMapContainer .confContentCard .w-full{
-  width:100%;
-}
-
-
-.usaMapContainer .auth div{
+.usaMapContainer .confContentCard .w-full {
   width: 100%;
 }
 
-.usaMapContainer .confMapContainer .auth{
+.usaMapContainer .auth div {
+  width: 100%;
+}
+
+.usaMapContainer .confMapContainer .auth {
   width: 30%;
 }
 
-.usaMapContainer p{
+.usaMapContainer p {
   font-size: 1rem;
   line-height: 1.5rem;
 }

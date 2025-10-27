@@ -228,7 +228,7 @@ First approach:
 
 Initially started with the <map> and <area> html tags, thinking that I would overlay a USA map graphic and creating the clickable areas using the <area> coordinates attribute.
 
-But considering how inefficient this would be time-wise by determining each individual US state coordinates, I opted to find a npm package that would handle the interactions of the USA states. 
+But considering how inefficient this would be time-wise by determining each individual US state coordinates, I opted to find a npm package that would handle the interactions of the USA states.
 
 Second approach:
 
@@ -247,6 +247,7 @@ By defining our tabbing and keyboard logic in our useEffect hook, we're able to 
 If users are using this app to find conferences and conf info, the next step would be to have the same users use the same app to network with people as well to reduce the need to download a new app/use a new app.
 
 What does this look like?
+
 - user login/auth
   - to connect data in respect to the user that's using the device/app
   - logout/login/signup
@@ -279,7 +280,7 @@ Loading
 
 Why not use `React.Suspense`, but use an explicit react state to handle loading for `supabase.auth.getSession` and/or `supabase.auth.onAuthStateChange`?
 
-Because the logic for checking if there is a user logged in right now on the first render of the App and/or checking if there was any changes to the user auth in real time are both in a `useEffect` hook, which triggers after the app is finished with its initial render. 
+Because the logic for checking if there is a user logged in right now on the first render of the App and/or checking if there was any changes to the user auth in real time are both in a `useEffect` hook, which triggers after the app is finished with its initial render.
 
 Why are we placing our supabase logic like `supabase.auth.getSession` and/or `supabase.auth.onAuthStateChange` in a `useEffect` hook?
 

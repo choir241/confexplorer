@@ -1,9 +1,9 @@
-import { type IConfData } from "../pages/Home/Home";
 import { LuCalendar } from "react-icons/lu";
 import { FaLocationDot } from "react-icons/fa6";
 import { TfiNewWindow } from "react-icons/tfi";
 import { months } from "../static/months";
-import { label } from "../static/label";
+import { labels } from "../static/labels"
+import {type IConfData} from "../interfaces/Map";
 
 export default function ConfContentCard({
   confContent,
@@ -31,7 +31,7 @@ export default function ConfContentCard({
           <h3>
             <a href={confContent.link}>
               {confContent.name}
-              <TfiNewWindow className="pl-half"/>
+              <TfiNewWindow className="pl-half" />
             </a>
           </h3>
           <div className="pb-1 flex items-center justify-between w-full">
@@ -52,7 +52,7 @@ export default function ConfContentCard({
           <img src={confContent.img} />
 
           <p>{confContent.description}</p>
-          <button className="button">{label.confContent.button}</button>
+          <button className="button">{labels.confContent.button}</button>
         </section>
       ) : (
         ""

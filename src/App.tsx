@@ -6,31 +6,31 @@ import Header from "./component/Header";
 import { useState, useEffect } from "react";
 import { type Session } from "@supabase/supabase-js";
 import { supabase } from "./static/supabaseClient";
-import { AuthSession} from "./middleware/Context";
-import RedirectAuthPage from "./middleware/RedirectAuthPage";
-import RedirectUserPage from "./middleware/RedirectUserPage";
-import {type IUser} from "./pages/User/User";
+import { AuthSession } from "./middleware/Context";
+import RedirectAuthPage from "./middleware/redirectPages/RedirectAuthPage";
+import RedirectUserPage from "./middleware/redirectPages/RedirectUserPage";
+import type { IUser } from "./interfaces/Auth";
 
 export default function App() {
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [connections, setConnections] = useState<IUser[] | null>([]);
+  const [users, setUsers] = useState<IUser[] | null>([]);
 
   useEffect(() => {
-    async function grabConnectionsData() {
-      const { data, error } = await supabase.from("Connections").select();
+    async function grabUsersData() {
+      const { data, error } = await supabase.from("Users").select();
 
       if (error) {
         throw new Error(
-          `There was an error fetching data from the Connections Supabase table: ${error}`
+          `There was an error fetching data from the Users Supabase table: ${error}`,
         );
       }
 
-      setConnections(data);
+      setUsers(data);
       setLoading(false);
     }
 
-    grabConnectionsData();
+    grabUsersData();
 
     // checks whos logged in right now
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -50,7 +50,7 @@ export default function App() {
   }, []);
 
   return (
-    <AuthSession.Provider value={{ session, loading, connections }}>
+    <AuthSession.Provider value={{ session, loading, users }}>
       <BrowserRouter>
         <Routes>
           <Route element={<Header />}>
