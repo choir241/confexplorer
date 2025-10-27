@@ -72,6 +72,7 @@ export default function User() {
 
   const [selectedConnection, setSelectedConnection] = useState<string>("");
   const [selectedUser, setSelectedUser] = useState<ISelectedUser | null>();
+  const [cameraElement, setCameraElement] = useState<React.JSX.Element>();
 
   const currentUserConnections = connections.find((connection) => {
     return connection.user_id === session.user.id;
@@ -104,6 +105,7 @@ export default function User() {
             <h3>{currentUserConnections.curr_role}</h3>
             <button
               onClick={() => (
+                setCameraElement(
                 <Camera
                   ref={camera}
                   errorMessages={{
@@ -116,11 +118,12 @@ export default function User() {
                     canvas: "Canvas is not supported",
                   }}
                 />
+               )
               )}
             >
               <FaCamera />
             </button>
-
+            {cameraElement}
             <img
               src={`https://api.qrserver.com/v1/create-qr-code/?data=${currentUserConnections.linkedin_link}&size=[200]x[200]&ecc=[low]`}
             />
