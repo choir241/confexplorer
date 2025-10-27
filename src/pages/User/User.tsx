@@ -1,8 +1,10 @@
 import { label } from "../../static/label";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import { AuthSession } from "../../middleware/Context";
 import "./User.css";
 import ConnectedUser from "../../component/ConnectedUser";
+import { Camera } from "react-camera-pro";
+import { FaCamera } from "react-icons/fa6";
 
 export interface IUser {
   user_id: string;
@@ -87,6 +89,8 @@ export default function User() {
     }
   }, [selectedConnection, currentUserConnections]);
 
+  const camera = useRef(null);
+
   return (
     <>
       {currentUserConnections ? (
@@ -98,6 +102,28 @@ export default function User() {
             </h1>
             <h2>{currentUserConnections.curr_company}</h2>
             <h3>{currentUserConnections.curr_role}</h3>
+            <button
+              onClick={() => (
+                <Camera
+                  ref={camera}
+                  errorMessages={{
+                    noCameraAccessible:
+                      "Camera is currently unaccessible. Please connect your camera or try again.",
+                    permissionDenied:
+                      "Permission denied. Please check your permissions settings in your device and try again.",
+                    switchCamera:
+                      "It is currently not possible to switch camera to a different one due to there only being one camera device.",
+                    canvas: "Canvas is not supported",
+                  }}
+                />
+              )}
+            >
+              <FaCamera />
+            </button>
+
+            <img
+              src={`https://api.qrserver.com/v1/create-qr-code/?data=${currentUserConnections.linkedin_link}&size=[200]x[200]&ecc=[low]`}
+            />
           </section>
 
           <section className="connectionsContainer">
@@ -126,13 +152,14 @@ export default function User() {
                 </ul>
 
                 <div className="labels">
-                {selectedUser.labels.map((label) => {
-                  return <span className="label">{label}</span>;
-                })}</div>
+                  {selectedUser.labels.map((label) => {
+                    return <span className="label">{label}</span>;
+                  })}
+                </div>
                 <button>Add Label</button>
               </div>
             ) : (
-              ""
+              <div className="connectionsContainer"></div>
             )}
           </section>
         </div>

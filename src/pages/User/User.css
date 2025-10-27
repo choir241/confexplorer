@@ -25,13 +25,6 @@
     font-size: 2rem;
 }
 
-.connectionsContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 70%;
-}
-
 .userCard{
     width: 70%;
 }
@@ -47,4 +40,11 @@ body *{
 .label{
     padding: .5rem 1rem;
     background-color: teal;
+}
+
+.connectionsContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 25rem;
 }
