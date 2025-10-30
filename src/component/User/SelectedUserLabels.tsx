@@ -7,13 +7,13 @@ export default function SelectedUserLabels({
   selectedConnection: ISelectedConnection;
 }) {
   return (
-    <div>
+    <div className="labelContainer">
       <div className="labels">
-        {selectedConnection.labels.map((label) => {
-          return <span className="label">{label}</span>;
-        })}
+        {selectedConnection.labels.map((label, i) => {
+          return <span className="label" key = {i}>{label}</span>;
+        })} 
       </div>
-      <button>{labels.user.selectedUserLabelsButton}</button>
+      <button className="button">{labels.user.selectedUserLabelsButton}</button>
     </div>
   );
 }

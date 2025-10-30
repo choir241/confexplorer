@@ -295,3 +295,5 @@ Why not place `session` and/or `loading` in the dependency arrays in the `useEff
 Supabase
 
 > Had to force other packages that use React to react v18.3.1 due to Supabase using that version of React and being incompatabile with the other packages using react v.19.1.1
+
+Database Re-design

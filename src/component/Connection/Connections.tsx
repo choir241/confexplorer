@@ -18,8 +18,8 @@ export default function Connections({
           return (
             <ConnectedUser
               setSelectedConnection={setSelectedConnection}
-              user={user}
-              key={user.user_id}
+              connectedUser={user}
+              key={user.id}
             />
           );
         })

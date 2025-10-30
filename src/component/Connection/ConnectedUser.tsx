@@ -6,10 +6,10 @@ import { AuthSession } from "../../middleware/Context";
 import { labels } from "../../static/labels";
 
 export default function ConnectedUser({
-  user,
+  connectedUser,
   setSelectedConnection,
 }: {
-  user: IUser;
+  connectedUser: IUser;
   setSelectedConnection: (e: ISelectedConnection) => void;
 }) {
   const { users } = useContext(AuthSession);
@@ -19,30 +19,39 @@ export default function ConnectedUser({
   }
 
   const findConnectedUser = users.find((user) => {
-    return user.user_id === user.id;
+    return user.user_id === connectedUser.id;
   });
 
   return (
-    <>
+    <div>
       {findConnectedUser ? (
         <div
           className="userCard"
-          key={user.id}
-          onClick={() => setSelectedConnection(user)}
+          onClick={() => setSelectedConnection(connectedUser)}
         >
           <h4>
             {findConnectedUser.first_name} {findConnectedUser.last_name}
           </h4>
-          <span>
-            {user.had_coffee_chat ? <PiCoffeeFill /> : <PiCoffeeLight />}
-          </span>
-          <span>
-            {user.bookmark_connection ? <IoBookmark /> : <IoBookmarkOutline />}
-          </span>
+          <div className="iconContainer">
+            <span className="coffeeIcon">
+              {connectedUser.had_coffee_chat ? (
+                <PiCoffeeFill />
+              ) : (
+                <PiCoffeeLight />
+              )}
+            </span>
+            <span>
+              {connectedUser.bookmark_connection ? (
+                <IoBookmark />
+              ) : (
+                <IoBookmarkOutline />
+              )}
+            </span>
+          </div>
         </div>
       ) : (
         ""
       )}
-    </>
+    </div>
   );
 }

@@ -29,32 +29,6 @@
   border-radius: 10px;
 }
 
-.button {
-  background: black;
-  width: 100%;
-  border-radius: 5px;
-  color: white;
-  border: none;
-  padding: 0.5rem 2rem;
-}
-
-.button:hover {
-  cursor: pointer;
-  background: rgb(65, 59, 59);
-}
-
-.button:active {
-  box-shadow: 3px 3px 2px rgb(54, 52, 52);
-}
-
-time {
-  display: flex;
-}
-
-img {
-  width: 100%;
-}
-
 .confContentCard img {
   margin: 1rem 0rem;
 }
@@ -65,23 +39,6 @@ img {
 
 .confContentCard p {
   line-height: 1.5rem;
-}
-
-a {
-  color: black;
-  text-decoration: none;
-}
-
-.flex {
-  display: flex;
-}
-
-.items-center {
-  align-items: center;
-}
-
-.space-between {
-  justify-content: space-between;
 }
 
 .usaMapContainer .confContentCard .w-full {

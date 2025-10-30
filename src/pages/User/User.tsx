@@ -7,6 +7,7 @@ import { type ISelectedConnection } from "../../interfaces/Auth";
 import CurrentUserInfo from "../../component/User/CurrentUserInfo";
 import Connections from "../../component/Connection/Connections";
 import SelectedUserLabels from "../../component/User/SelectedUserLabels";
+import { FaEdit } from "react-icons/fa";
 
 export default function User() {
   const { session, loading, users } = useContext(AuthSession);
@@ -21,8 +22,26 @@ export default function User() {
     return user.user_id === session.user.id;
   });
 
+  const findSelectedConnection = users.find((user)=>{
+    return user.user_id === selectedConnection?.id
+  });
+
+    async function addLabel({ id }: { id: string }) {
+    // const { data, error } = await supabase
+    //   .from("Users")
+    //   .upsert({ id: 1, labels: [""] })
+    //   .select();
+  }
+
+  //   async function addNote({ id }: { id: string }) {
+  //     const { data, error } = await supabase
+  //       .from("Users")
+  //       .upsert({ id: 1, name: "piano" })
+  //       .select();
+  //   }
+  
   return (
-    <>
+    <section id = "user">
       {findCurrentUser ? (
         <div className="flex justify-between">
           <CurrentUserInfo findCurrentUser={findCurrentUser} />
@@ -33,20 +52,26 @@ export default function User() {
           />
 
           <section>
+          
             {selectedConnection ? (
-              <div>
+              <div className="usersInfoContainer">
+                <section className="flex items-center justify-between w-full">
+                
+                <span>{findSelectedConnection ? findSelectedConnection.first_name : ""} {" "} {findSelectedConnection ? findSelectedConnection.last_name : ""}</span>
+                </section>
                 <SelectedUserNotes selectedConnection={selectedConnection} />
-
+        
                 <SelectedUserLabels selectedConnection={selectedConnection} />
               </div>
             ) : (
-              <div className="usersContainer"></div>
+              <div className="usersInfoContainer">
+              </div>
             )}
           </section>
         </div>
       ) : (
         <h1>{labels.loading}</h1>
       )}
-    </>
+    </section>
   );
 }

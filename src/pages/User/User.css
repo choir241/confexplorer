@@ -4,6 +4,7 @@
   padding: 1rem;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .userCard h4 {
@@ -27,23 +28,81 @@
 }
 
 .userCard {
-  width: 70%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
+.usersContainer{
+  width: 30%;
+}
+
+.usersInfoContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25rem;
+}
+
+.coffeeIcon{
+  margin-right: 1rem;
+}
 /* LABELS */
 
 .labels {
-  margin: 1rem 0rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
 .label {
   padding: 0.5rem 1rem;
+  margin-top: 1rem;
   background-color: teal;
 }
 
-.connectionsContainer {
+.labelContainer {
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
-  min-width: 25rem;
+  flex-direction: column;
+}
+
+/* NOTES */
+
+.userNote{
+  cursor: pointer;
+  margin: .5rem 0rem;
+  padding: 1rem;
+  background-color: rgb(186, 186, 233);
+  display: flex;
+  justify-content: space-between;
+}
+
+.noteIconContainer button{
+  margin-right: 1rem;
+}
+
+.noteIconContainer{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  justify-content: flex-end;
+}
+
+/* USER INFO */
+
+.fullNameContainer{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.qrCode{
+  width: 20%;
+}
+
+#user{
+  margin-top: 1rem;
 }

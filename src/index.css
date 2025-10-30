@@ -9,8 +9,35 @@ header nav a:hover {
   text-decoration: underline;
 }
 
+img, .w-full {
+  width: 100%;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
 .button a {
   color: white;
+}
+
+.button {
+  background: black;
+  width: auto;
+  border-radius: 5px;
+  color: white;
+  border: none;
+  padding: 0.5rem 2rem;
+}
+
+.button:hover {
+  cursor: pointer;
+  background: rgb(65, 59, 59);
+}
+
+.button:active {
+  box-shadow: 3px 3px 2px rgb(54, 52, 52);
 }
 
 header nav .button {
@@ -21,6 +48,9 @@ header nav .button {
 /****************/
 /**** Layout ****/
 /****************/
+.text-center{
+  text-align: center;
+}
 
 .flex {
   display: flex;
@@ -40,6 +70,10 @@ header nav .button {
 
 .justify-between {
   justify-content: space-between;
+}
+
+.flex-col{
+  flex-direction: column;
 }
 
 /****************/
@@ -68,4 +102,8 @@ header nav .button {
 
 .mr-half {
   margin-right: 0.5rem;
+}
+
+ul li{
+  list-style: none;
 }
