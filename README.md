@@ -297,3 +297,9 @@ Supabase
 > Had to force other packages that use React to react v18.3.1 due to Supabase using that version of React and being incompatabile with the other packages using react v.19.1.1
 
 Database Re-design
+
+Why did I consider making a separate DB table called Connections?
+
+Why did I put a edit button in the user profile info section, and edit and delete button for each user connection note?
+
+

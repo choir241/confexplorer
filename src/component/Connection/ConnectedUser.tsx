@@ -1,7 +1,7 @@
 import { PiCoffeeFill, PiCoffeeLight } from "react-icons/pi";
 import { IoBookmarkOutline, IoBookmark } from "react-icons/io5";
 import { useContext } from "react";
-import { type IUser, type ISelectedConnection } from "../../interfaces/Auth";
+import { type ISelectedConnection } from "../../interfaces/Auth";
 import { AuthSession } from "../../middleware/Context";
 import { labels } from "../../static/labels";
 
@@ -9,10 +9,12 @@ export default function ConnectedUser({
   connectedUser,
   setSelectedConnection,
 }: {
-  connectedUser: IUser;
+  connectedUser: ISelectedConnection;
   setSelectedConnection: (e: ISelectedConnection) => void;
 }) {
   const { users } = useContext(AuthSession);
+
+  console.log(connectedUser)
 
   if (!users) {
     return <h1>{labels.loading}</h1>;

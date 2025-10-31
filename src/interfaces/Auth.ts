@@ -16,10 +16,21 @@ export interface IUser {
   curr_role: string;
 }
 
+interface ILabel{
+  id: string,
+  label: string,
+}
+
+interface INote{
+  id: string,
+  note: string
+}
+
 export interface ISelectedConnection {
   id: string;
   had_coffee_chat: boolean;
   bookmark_connection: boolean;
-  labels: string[];
-  notes: string[];
+  labels: ILabel[];
+  notes: INote[];
 }
+

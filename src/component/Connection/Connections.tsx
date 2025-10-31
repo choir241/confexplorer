@@ -14,7 +14,7 @@ export default function Connections({
   return (
     <section className="usersContainer">
       {findCurrentUser ? (
-        findCurrentUser.connected_users.map((user: IUser) => {
+        findCurrentUser.connected_users.map((user: ISelectedConnection) => {
           return (
             <ConnectedUser
               setSelectedConnection={setSelectedConnection}

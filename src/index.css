@@ -107,3 +107,14 @@ header nav .button {
 ul li{
   list-style: none;
 }
+
+input{
+  width: 100%;
+  margin-right: 1rem;
+}
+
+textarea{
+  width: 100%;
+  margin-right: 1rem;
+  resize: none;
+}

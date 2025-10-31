@@ -7,7 +7,6 @@ import { type ISelectedConnection } from "../../interfaces/Auth";
 import CurrentUserInfo from "../../component/User/CurrentUserInfo";
 import Connections from "../../component/Connection/Connections";
 import SelectedUserLabels from "../../component/User/SelectedUserLabels";
-import { FaEdit } from "react-icons/fa";
 
 export default function User() {
   const { session, loading, users } = useContext(AuthSession);
@@ -25,20 +24,6 @@ export default function User() {
   const findSelectedConnection = users.find((user)=>{
     return user.user_id === selectedConnection?.id
   });
-
-    async function addLabel({ id }: { id: string }) {
-    // const { data, error } = await supabase
-    //   .from("Users")
-    //   .upsert({ id: 1, labels: [""] })
-    //   .select();
-  }
-
-  //   async function addNote({ id }: { id: string }) {
-  //     const { data, error } = await supabase
-  //       .from("Users")
-  //       .upsert({ id: 1, name: "piano" })
-  //       .select();
-  //   }
   
   return (
     <section id = "user">
@@ -59,7 +44,8 @@ export default function User() {
                 
                 <span>{findSelectedConnection ? findSelectedConnection.first_name : ""} {" "} {findSelectedConnection ? findSelectedConnection.last_name : ""}</span>
                 </section>
-                <SelectedUserNotes selectedConnection={selectedConnection} />
+                <SelectedUserNotes 
+                selectedConnection={selectedConnection} />
         
                 <SelectedUserLabels selectedConnection={selectedConnection} />
               </div>
