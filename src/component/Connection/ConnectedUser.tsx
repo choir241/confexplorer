@@ -14,8 +14,6 @@ export default function ConnectedUser({
 }) {
   const { users } = useContext(AuthSession);
 
-  console.log(connectedUser)
-
   if (!users) {
     return <h1>{labels.loading}</h1>;
   }

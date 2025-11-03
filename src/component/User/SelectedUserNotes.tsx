@@ -1,53 +1,81 @@
 import type { ISelectedConnection } from "../../interfaces/Auth";
-import { FaEdit } from "react-icons/fa";
+import { FaEdit, FaPlus } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
-import { supabase } from "../../static/supabaseClient";
 import TextInput from "../TextInput";
 import { useState, useContext } from "react";
 import { AuthSession } from "../../middleware/Context";
 import { labels } from "../../static/labels";
+import { updateNotes } from "../../hooks/updateNotes";
 
 export default function SelectedUserNotes({
   selectedConnection,
+  setSelectedConnection,
 }: {
   selectedConnection: ISelectedConnection;
+  setSelectedConnection: (e: ISelectedConnection) => void;
 }) {
   const [toggleEditNoteId, setToggleEditNoteId] = useState("");
   const [currentNoteValue, setCurrentNoteValue] = useState("");
+  const [toggleCreateNoteForm, setToggleCreateNoteForm] = useState(false);
 
-  const {users, loading, session} = useContext(AuthSession);
+  const { users, loading, session } = useContext(AuthSession);
 
   if (!users || loading || !session) {
-      return <h1>{labels.loading}</h1>;
+    return <h1>{labels.loading}</h1>;
   }
 
-  async function addNote({ noteId, noteContent }: { noteId: string, noteContent: string }) {
-    setToggleEditNoteId("");
-    const updatedNotes = selectedConnection.notes.map((note)=>{
-      if(note.id === noteId){
-        return {...note, note: note.note = noteContent}
-      }else{
-        return note
-      }
-    })
-
-    const findSelectedConnection = users?.find((user)=>user.user_id === session?.user.id)!;
-
-    const updateConnectedUsers = findSelectedConnection.connected_users.map((user: ISelectedConnection)=>{
-      if(user.id === selectedConnection.id){
-        return {...user, notes: updatedNotes} 
-      }else{
-        return user
-      }
+  async function editNote({
+    noteId,
+    noteContent,
+  }: {
+    noteId: string;
+    noteContent: string;
+  }) {
+    await updateNotes({
+      noteUpdater: (notes) =>
+        notes.map((note) =>
+          note.id === noteId ? { ...note, note: noteContent } : note
+        ),
+      selectedConnection,
+      users,
+      session,
+      setSelectedConnection,
     });
 
-    const { error } = await supabase
-      .from("Users")
-      .upsert({ ...findSelectedConnection, id: findSelectedConnection.id, connected_users: updateConnectedUsers });
+    setToggleEditNoteId("");
+    setCurrentNoteValue("");
+  }
 
-      if(error){
-        throw new Error(`${error}`);
-      }
+  async function deleteNote({ noteId }: { noteId: string }) {
+    await updateNotes({
+      noteUpdater: (notes) => notes.filter((note) => note.id !== noteId),
+      selectedConnection,
+      users,
+      session,
+      setSelectedConnection,
+    });
+  }
+
+  async function addNote({ currentNoteValue }: { currentNoteValue: string }) {
+    if (!currentNoteValue) {
+      throw new Error("No value input detected, please try again");
+    }
+
+    const newNoteId = Number(selectedConnection.notes.at(-1)?.id || 0) + 1;
+
+    await updateNotes({
+      noteUpdater: (notes) => [
+        ...notes,
+        { id: newNoteId.toString(), note: currentNoteValue },
+      ],
+      selectedConnection,
+      users,
+      session,
+      setSelectedConnection,
+    });
+
+    setToggleCreateNoteForm(false);
+    setCurrentNoteValue("");
   }
 
   return (
@@ -64,7 +92,10 @@ export default function SelectedUserNotes({
                 >
                   <FaEdit />
                 </button>
-                <button className="button">
+                <button
+                  className="button"
+                  onClick={() => deleteNote({ noteId: note.id })}
+                >
                   <MdDelete />
                 </button>
               </section>
@@ -77,14 +108,47 @@ export default function SelectedUserNotes({
                 currentValue={note.note}
                 handleOnValueChange={setCurrentNoteValue}
               />
-              <button className="button" onClick={()=>addNote({noteId: note.id, noteContent: currentNoteValue ? currentNoteValue : note.note})}>Update</button>
+              <button
+                className="button"
+                onClick={() =>
+                  editNote({
+                    noteId: note.id,
+                    noteContent: currentNoteValue
+                      ? currentNoteValue
+                      : note.note,
+                  })
+                }
+              >
+                {labels.user.updateNoteButton}
+              </button>
             </div>
           );
         }
       })}
-      <button className="button" onClick={() => {}}>
-        Add Note
-      </button>
+
+      {toggleCreateNoteForm ? (
+        <TextInput
+          currentValue={""}
+          handleOnValueChange={setCurrentNoteValue}
+        />
+      ) : (
+        ""
+      )}
+      {toggleCreateNoteForm ? (
+        <button
+          className="button"
+          onClick={() => addNote({ currentNoteValue })}
+        >
+          {labels.user.addNoteButton}
+        </button>
+      ) : (
+        <button
+          className="button"
+          onClick={() => setToggleCreateNoteForm(true)}
+        >
+          <FaPlus />
+        </button>
+      )}
     </section>
   );
 }

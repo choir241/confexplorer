@@ -33,4 +33,3 @@ export interface ISelectedConnection {
   labels: ILabel[];
   notes: INote[];
 }
-
