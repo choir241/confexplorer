@@ -6,6 +6,7 @@ import { labels } from "../../static/labels";
 import { updateLabels } from "../../hooks/updateLabels";
 import { AuthSession } from "../../middleware/Context";
 import { type ILabel } from "../../interfaces/Auth";
+import { FaTrashCan } from "react-icons/fa6";
 
 export default function SelectedUserLabels({
   selectedConnection,
@@ -23,10 +24,29 @@ export default function SelectedUserLabels({
     return <h1>{labels.loading}</h1>;
   }
 
+  async function confirmDeleteLabel({
+    label,
+    labelId,
+  }: {
+    label: string;
+    labelId: number;
+  }) {
+    if (confirm(`${labels.user.deleteLabelConfirm} ${label}`)) {
+      await updateLabels({
+        labelUpdater: (labels) =>
+          labels.filter((label) => label.id !== labelId),
+        selectedConnection,
+        users,
+        session,
+        setSelectedConnection,
+      });
+    }
+  }
+
   async function addLabel() {
     const newLabelId =
       Number(
-        selectedConnection.labels[selectedConnection.labels.length - 1].id,
+        selectedConnection.labels[selectedConnection.labels.length - 1].id
       ) + 1;
 
     updateLabels({
@@ -46,9 +66,15 @@ export default function SelectedUserLabels({
       <div className="labels">
         {selectedConnection.labels.map((label: ILabel) => {
           return (
-            <span className="label" key={label.id}>
+            <div className="label flex items-center" key={label.id}>
               {label.label}
-            </span>
+              <button
+                className="button"
+                onClick={() => confirmDeleteLabel({ label: label.label, labelId: label.id })}
+              >
+                <FaTrashCan />
+              </button>
+            </div>
           );
         })}
       </div>
@@ -72,10 +98,10 @@ export default function SelectedUserLabels({
           </section>
         ) : (
           <button
-            className="button"
+            className="button mr-1"
             onClick={() => setToggleSelectUserForm(true)}
           >
-            {<FaPlus />}
+            <FaPlus />
           </button>
         )}
       </section>

@@ -24,5 +24,7 @@ export const labels = {
     addNoteButton: "Add Note",
     updateNoteButton: "Update",
     cancelButton: "Cancel",
+    label: "label",
+    deleteLabelConfirm: "Are you sure you want to delete this:"
   },
 };

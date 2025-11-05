@@ -15,7 +15,7 @@ export async function updateLabels({
   session: Session | null;
   setSelectedConnection: (e: ISelectedConnection) => void;
 }) {
-  const updatedNotes = labelUpdater(selectedConnection.labels);
+  const updatedLabels = labelUpdater(selectedConnection.labels);
 
   const findSelectedConnection = users?.find(
     (user) => user.user_id === session?.user.id,
@@ -24,7 +24,7 @@ export async function updateLabels({
   const updateConnectedUsers = findSelectedConnection.connected_users.map(
     (user: ISelectedConnection) =>
       user.id === selectedConnection.id
-        ? { ...user, labels: updatedNotes }
+        ? { ...user, labels: updatedLabels }
         : user,
   );
 
@@ -43,6 +43,4 @@ export async function updateLabels({
   if (error) {
     throw new Error(`${error}`);
   }
-
-  return updatedNotes;
 }
