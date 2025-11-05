@@ -16,14 +16,14 @@ export interface IUser {
   curr_role: string;
 }
 
-interface ILabel{
-  id: string,
-  label: string,
+export interface ILabel {
+  id: number;
+  label: string;
 }
 
-interface INote{
-  id: string,
-  note: string
+export interface INote {
+  id: string;
+  note: string;
 }
 
 export interface ISelectedConnection {

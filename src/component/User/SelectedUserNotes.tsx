@@ -34,7 +34,7 @@ export default function SelectedUserNotes({
     await updateNotes({
       noteUpdater: (notes) =>
         notes.map((note) =>
-          note.id === noteId ? { ...note, note: noteContent } : note
+          note.id === noteId ? { ...note, note: noteContent } : note,
         ),
       selectedConnection,
       users,
@@ -56,26 +56,38 @@ export default function SelectedUserNotes({
     });
   }
 
-  async function addNote({ currentNoteValue }: { currentNoteValue: string }) {
-    if (!currentNoteValue) {
-      throw new Error("No value input detected, please try again");
+  async function addNote({
+    e,
+    currentNoteValue,
+  }: {
+    currentNoteValue: string;
+    e: React.MouseEvent<HTMLButtonElement>;
+  }) {
+    e.preventDefault();
+    try {
+      if (!currentNoteValue) {
+        throw new Error("No value input detected, please try again");
+      }
+
+      const newNoteId = Number(selectedConnection.notes.at(-1)?.id || 0) + 1;
+
+      await updateNotes({
+        noteUpdater: (notes) => [
+          ...notes,
+          { id: newNoteId.toString(), note: currentNoteValue },
+        ],
+        selectedConnection,
+        users,
+        session,
+        setSelectedConnection,
+      });
+
+      setToggleCreateNoteForm(false);
+      setCurrentNoteValue("");
+    } catch (err) {
+      console.error(err);
+      throw new Error(`There was an error adding a note - ${err}`);
     }
-
-    const newNoteId = Number(selectedConnection.notes.at(-1)?.id || 0) + 1;
-
-    await updateNotes({
-      noteUpdater: (notes) => [
-        ...notes,
-        { id: newNoteId.toString(), note: currentNoteValue },
-      ],
-      selectedConnection,
-      users,
-      session,
-      setSelectedConnection,
-    });
-
-    setToggleCreateNoteForm(false);
-    setCurrentNoteValue("");
   }
 
   return (
@@ -127,20 +139,32 @@ export default function SelectedUserNotes({
       })}
 
       {toggleCreateNoteForm ? (
-        <TextInput
-          currentValue={""}
-          handleOnValueChange={setCurrentNoteValue}
-        />
-      ) : (
-        ""
-      )}
-      {toggleCreateNoteForm ? (
-        <button
-          className="button"
-          onClick={() => addNote({ currentNoteValue })}
-        >
-          {labels.user.addNoteButton}
-        </button>
+        <form>
+          <TextInput
+            className="mt-1"
+            currentValue={""}
+            handleOnValueChange={setCurrentNoteValue}
+          />
+          <section>
+            <button
+              className="button mr-1"
+              onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+                addNote({ e, currentNoteValue })
+              }
+            >
+              {labels.user.addNoteButton}
+            </button>
+            <button
+              className="button"
+              onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                e.preventDefault();
+                setToggleCreateNoteForm(false);
+              }}
+            >
+              {labels.user.cancelButton}
+            </button>
+          </section>
+        </form>
       ) : (
         <button
           className="button"

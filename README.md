@@ -301,5 +301,3 @@ Database Re-design
 Why did I consider making a separate DB table called Connections?
 
 Why did I put a edit button in the user profile info section, and edit and delete button for each user connection note?
-
-

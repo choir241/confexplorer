@@ -19,9 +19,10 @@ export const labels = {
   user: {
     h2: "Connections",
     h4: "No Connections Yet",
-    selectedUserLabelsButton: "Add Label",
+    addLabelButton: "Add Label",
     noSelectedUser: "No currently selected user",
     addNoteButton: "Add Note",
-    updateNoteButton: "Update"
+    updateNoteButton: "Update",
+    cancelButton: "Cancel",
   },
 };

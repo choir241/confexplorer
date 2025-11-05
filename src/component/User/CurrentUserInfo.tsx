@@ -10,12 +10,16 @@ export default function CurrentUserInfo({
   return (
     <section>
       <div className="fullNameContainer">
-      <h1>
-        {findCurrentUser.first_name} {findCurrentUser.last_name}
-      </h1>
-      <button className="button"><FaEdit/></button>
+        <h1>
+          {findCurrentUser.first_name} {findCurrentUser.last_name}
+        </h1>
+        <button className="button">
+          <FaEdit />
+        </button>
       </div>
-      <h2>{findCurrentUser.curr_role} at {findCurrentUser.curr_company}</h2>
+      <h2>
+        {findCurrentUser.curr_role} at {findCurrentUser.curr_company}
+      </h2>
 
       <QRCode
         urlLink={findCurrentUser.linkedin_link}

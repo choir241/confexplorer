@@ -1,21 +1,21 @@
-import type { ISelectedConnection, IUser, INote } from "../interfaces/Auth";
-import { supabase } from "../static/supabaseClient";
+import type { ISelectedConnection, IUser, ILabel } from "../interfaces/Auth";
 import { type Session } from "@supabase/supabase-js";
+import { supabase } from "../static/supabaseClient";
 
-export async function updateNotes({
-  noteUpdater,
+export async function updateLabels({
+  labelUpdater,
   selectedConnection,
   users,
   session,
   setSelectedConnection,
 }: {
-  noteUpdater: (notes: INote[]) => INote[];
+  labelUpdater: (label: ILabel[]) => ILabel[];
   selectedConnection: ISelectedConnection;
   users: IUser[] | null;
   session: Session | null;
   setSelectedConnection: (e: ISelectedConnection) => void;
 }) {
-  const updatedNotes = noteUpdater(selectedConnection.notes);
+  const updatedNotes = labelUpdater(selectedConnection.labels);
 
   const findSelectedConnection = users?.find(
     (user) => user.user_id === session?.user.id,
@@ -24,12 +24,12 @@ export async function updateNotes({
   const updateConnectedUsers = findSelectedConnection.connected_users.map(
     (user: ISelectedConnection) =>
       user.id === selectedConnection.id
-        ? { ...user, notes: updatedNotes }
+        ? { ...user, labels: updatedNotes }
         : user,
   );
 
   const updatedSelectedConnectionState = updateConnectedUsers.find(
-    (user: ISelectedConnection) => user.id === selectedConnection.id,
+    (user) => user.id === selectedConnection.id,
   )!;
 
   setSelectedConnection(updatedSelectedConnectionState);

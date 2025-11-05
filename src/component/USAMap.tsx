@@ -5,7 +5,7 @@ import {
   type USAStateAbbreviation,
 } from "@mirawision/usa-map-react";
 import { statesWithConferences } from "../static/statesWithConferences";
-import {type IUSAMapProps} from "../interfaces/Map";
+import { type IUSAMapProps } from "../interfaces/Map";
 
 export default function USAMap({
   onStateClick,

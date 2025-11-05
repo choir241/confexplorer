@@ -2,8 +2,8 @@ import { LuCalendar } from "react-icons/lu";
 import { FaLocationDot } from "react-icons/fa6";
 import { TfiNewWindow } from "react-icons/tfi";
 import { months } from "../static/months";
-import { labels } from "../static/labels"
-import {type IConfData} from "../interfaces/Map";
+import { labels } from "../static/labels";
+import { type IConfData } from "../interfaces/Map";
 
 export default function ConfContentCard({
   confContent,

@@ -1,5 +1,5 @@
 import "./Home.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ConfContentCard from "../../component/ConfContentCard";
 import { conferences } from "../../static/conferenceData";
 import USAMap from "../../component/USAMap";
@@ -15,6 +15,7 @@ export default function Home() {
     }
   };
 
+  useEffect(() => {}, []);
   const selectedConference = conferences.filter(
     (confData) => confData.state === selectedState,
   );
